@@ -1,0 +1,57 @@
+// running on Ubuntu24 , native (no WSL virtual machine)
+// bash$: cargo build --features "std, pretrained" --verbose 
+
+
+error[E0599]: no method named `decode` found for mutable reference `&mut decoder::Decoder` in the current scope
+   --> /home/kos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/reqwest-0.11.27/src/async_impl/response.rs:279:49
+    |
+279 |         if let Some(item) = self.res.body_mut().decode().await {
+    |                                                 ^^^^^^ method not found in `&mut Decoder`
+    |
+
+Caused by:
+    process didn't exit successfully: 
+    `~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rustc
+     --crate-name reqwest 
+     --edition  =2021 /home/kos/.cargo/registry/src/index.crates.io-6f17d22bba15001f/reqwest-0.11.27/src/lib.rs 
+     --error-format  =json 
+     --json     =diagnostic-rendered-ansi,artifacts,future-incompat 
+     --diagnostic-width      =106 
+     --crate-type lib 
+     --emit       =dep-info,metadata,link -C embed-bitcode    =no -C debuginfo     =2 
+     --cfg 'feature     ="__tls"' 
+     --cfg 'feature   ="default"' 
+     --cfg 'feature       ="default-tls"' 
+     --cfg 'feature     ="hyper-tls"' 
+     --cfg 'feature   ="native-tls-crate"' 
+     --cfg 'feature      ="tokio-native-tls"' 
+     --check-cfg 'cfg(docsrs)' 
+     --check-cfg 'cfg(feature, values("__internal_proxy_sys_no_cache", "__rustls", "__tls", "async-compression", "blocking", "brotli", "cookie_crate", "cookie_store", "cookies", "default", "default-tls", "deflate", "futures-channel", "gzip", "h3", "h3-quinn", "hickory-dns", "hickory-resolver", "http3", "hyper-rustls", "hyper-tls", "json", "mime_guess", "multipart", "native-tls", "native-tls-alpn", "native-tls-crate", "native-tls-vendored", "quinn", "rustls", "rustls-native-certs", "rustls-tls", "rustls-tls-manual-roots", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "serde_json", "socks", "stream", "tokio-native-tls", "tokio-rustls", "tokio-socks", "tokio-util", "trust-dns", "wasm-streams", "webpki-roots"))' -C metadata        =f8d0755b42d7dd7f -C extra-filename     =-f8d0755b42d7dd7f --out-dir target/debug/deps -L dependency    =target/debug/deps
+
+    --extern base64     =target/debug/deps/libbase64-309ef582bd843d33.rmeta
+    --extern bytes      =target/debug/deps/libbytes-74d87212c8a9491f.rmeta
+    --extern encoding_rs        =target/debug/deps/libencoding_rs-75b46f7d4eddca6a.rmeta
+    --extern futures_core       =target/debug/deps/libfutures_core-bbe118dd79718c74.rmeta
+    --extern futures_util       =target/debug/deps/libfutures_util-a03426dbc9fc707b.rmeta
+    --extern h2     =target/debug/deps/libh2-1fdd378e0c037fe9.rmeta
+    --extern http       =target/debug/deps/libhttp-b0606646e301b4f4.rmeta
+    --extern http_body      =target/debug/deps/libhttp_body-2f16694cb96775d9.rmeta
+    --extern hyper      =target/debug/deps/libhyper-274aa9e5389bfba1.rmeta
+    --extern hyper_tls      =target/debug/deps/libhyper_tls-0503b9f38d4a0591.rmeta
+    --extern ipnet      =target/debug/deps/libipnet-e48bd8e2986d8365.rmeta
+    --extern log        =target/debug/deps/liblog-e7e7e8ec9ff686da.rmeta
+    --extern mime       =target/debug/deps/libmime-34c62d26cca01717.rmeta
+    --extern native_tls_crate       =target/debug/deps/libnative_tls-53002bd47b373f40.rmeta
+    --extern once_cell      =target/debug/deps/libonce_cell-795d6939e3fe8636.rmeta
+    --extern percent_encoding       =target/debug/deps/libpercent_encoding-a400589552762a21.rmeta
+    --extern pin_project_lite       =target/debug/deps/libpin_project_lite-0917a66d1286620d.rmeta
+    --extern rustls_pemfile     =target/debug/deps/librustls_pemfile-ca091fbd60718fb1.rmeta
+    --extern serde      =target/debug/deps/libserde-b2b771d63575cd99.rmeta
+    --extern serde_urlencoded       =target/debug/deps/libserde_urlencoded-6f85a5c029f4dae4.rmeta
+    --extern sync_wrapper       =target/debug/deps/libsync_wrapper-e6943188b4be07f5.rmeta
+    --extern tokio      =target/debug/deps/libtokio-220527461fda1c5e.rmeta
+    --extern tokio_native_tls       =target/debug/deps/libtokio_native_tls-3e024f3995e67bde.rmeta
+    --extern tower_service      =target/debug/deps/libtower_service-44dbed632a843492.rmeta
+    --extern url        =target/debug/deps/liburl-1571a09a2110117e.rmeta
+
+    --cap-lints allow` (exit status: 1)
