@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"rust-analyzer.cargo.features": ["pretrained"],
+		//"rust-analyzer.cargo.extraArgs": ["samples/verkeerslichten.png"]
+		"rust-analyzer.runnables.extraArgs": ["samples/verkeerslichten.png"]
+	}
+}

@@ -18,18 +18,34 @@ const STRIDES: [usize; 3] = [8, 16, 32];
 const IN_CHANNELS: [usize; 3] = [256, 512, 1024];
 const PRIOR_PROB: f64 = 1e-2;
 
+// /// Create a 2D coordinate grid for the specified dimensions.
+// /// Similar to [`numpy.indices`](https://numpy.org/doc/stable/reference/generated/numpy.indices.html)
+// /// but specific to two dimensions.
+// fn create_2d_grid<B: Backend>(x: usize, y: usize, device: &Device<B>) -> Tensor<B, 3, Int> {
+//     let y_idx = Tensor::arange(0..y as i64, device)
+//         .reshape(Shape::new([y, 1]))
+//         .repeat_dim(1, x)
+//         .reshape(Shape::new([y, x]));
+//     let x_idx = Tensor::arange(0..x as i64, device)
+//         .reshape(Shape::new([1, x])) // can only repeat with dim=1
+//         .repeat_dim(0, y)
+//         .reshape(Shape::new([y, x]));
+
+//     Tensor::stack(vec![x_idx, y_idx], 2)
+// }
+
 /// Create a 2D coordinate grid for the specified dimensions.
 /// Similar to [`numpy.indices`](https://numpy.org/doc/stable/reference/generated/numpy.indices.html)
 /// but specific to two dimensions.
 fn create_2d_grid<B: Backend>(x: usize, y: usize, device: &Device<B>) -> Tensor<B, 3, Int> {
-    let y_idx = Tensor::arange(0..y as i64, device)
-        .reshape(Shape::new([y, 1]))
+    let y_idx: Tensor<B, 2, Int> = Tensor::arange(0..y as i64, device)
+        .reshape::<2, _>(Shape::new([y, 1]))
         .repeat_dim(1, x)
-        .reshape(Shape::new([y, x]));
-    let x_idx = Tensor::arange(0..x as i64, device)
-        .reshape(Shape::new([1, x])) // can only repeat with dim=1
+        .reshape::<2, _>(Shape::new([y, x]));
+    let x_idx: Tensor<B, 2, Int> = Tensor::arange(0..x as i64, device)
+        .reshape::<2, _>(Shape::new([1, x])) // can only repeat with dim=1
         .repeat_dim(0, y)
-        .reshape(Shape::new([y, x]));
+        .reshape::<2, _>(Shape::new([y, x]));
 
     Tensor::stack(vec![x_idx, y_idx], 2)
 }

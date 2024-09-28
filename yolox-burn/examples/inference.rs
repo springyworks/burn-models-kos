@@ -93,6 +93,11 @@ fn draw_boxes(
     DynamicImage::ImageRgb8(image)
 }
 
+/// .
+///
+/// # Panics
+///
+/// Panics if path to image is not (correctly) provided.
 pub fn main() {
     // Parse arguments
     let img_path = std::env::args().nth(1).expect("No image path provided");
